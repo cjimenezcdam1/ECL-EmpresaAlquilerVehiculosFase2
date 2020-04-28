@@ -95,7 +95,9 @@ public abstract class Vehiculo implements Comparable<Vehiculo>{
 	/**
 	 * Nos calcula el precio de alquiler en base a unos días y el precio por día del vehículo.
 	 */
-	public abstract double calcularPrecioAlquiler(int dias);
+	public double calcularPrecioAlquiler(int dias) {
+		return dias * this.getPrecioDia();
+	}
 	/**
 	 * Redefinición de este método
 	 */

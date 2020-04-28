@@ -18,10 +18,10 @@ package alquileres.modelo;
  */
 public class Furgoneta extends Vehiculo{
 
+	private static final int INCREMENTO10 = 10;
+	private static final int INCREMENTO15 = 15;
+	private static final int INCREMENTO25 = 25;
 	private double volumenCarga;
-	private final int INCREMENTO1 = 10;
-	private final int INCREMENTO2 = 15;
-	private final int INCREMENTO3 = 25;
 	
 	/**
 	 * Constructor de la clase Furgoneta
@@ -55,12 +55,12 @@ public class Furgoneta extends Vehiculo{
 	@Override
 	public double calcularPrecioAlquiler(int dias) {
 		if(this.getVolumenCarga() < 5) {
-			return (this.getPrecioDia() + INCREMENTO1) * dias;
+			return super.calcularPrecioAlquiler(dias) + INCREMENTO10;
 		}
 		if(this.getVolumenCarga() > 10) {
-			return (this.getPrecioDia()  + INCREMENTO3) * dias;
+			return super.calcularPrecioAlquiler(dias)  + INCREMENTO25;
 		}
-		return (this.getPrecioDia()  + INCREMENTO2) * dias;
+		return super.calcularPrecioAlquiler(dias)  + INCREMENTO15;
 	}
 	
 	/**

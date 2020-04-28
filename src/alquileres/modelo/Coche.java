@@ -49,7 +49,7 @@ public class Coche extends Vehiculo{
 		if(this.getNumPlazas() > 4) {
 			return (INCREMENTO + this.getPrecioDia()) * dias;
 		}
-		return dias * this.getPrecioDia();
+		return super.calcularPrecioAlquiler(dias);
 	}
 	
 	/**
