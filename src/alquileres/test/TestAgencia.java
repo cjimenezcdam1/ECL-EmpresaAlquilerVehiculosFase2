@@ -3,6 +3,8 @@ package alquileres.test;
 import java.util.Map;
 import java.util.Set;
 
+import alquileres.modelo.AgenciaAlquiler;
+
 /**
  *    
  */
