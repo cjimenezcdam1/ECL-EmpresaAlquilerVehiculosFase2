@@ -1,5 +1,8 @@
 package alquileres.modelo;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -95,21 +98,26 @@ public class AgenciaAlquiler {
 	 * La clase Utilidades nos devuelve un array con las líneas de datos
 	 * de la flota de vehículos  
 	 */
-	public void cargarFlota() {
-		String[] datos = Utilidades.obtenerLineasDatos();
-		String error = null;
+	public int cargarFlota() {
+		int lineasError = 0;
+		BufferedReader entrada = null;
 		try {
-			for (String linea : datos) {
-				error = linea;
-				Vehiculo vehiculo = obtenerVehiculo(linea);
-				this.addVehiculo(vehiculo);
-
+			entrada = new BufferedReader(
+					new FileReader(FICHERO_ENTRADA));
+			String linea = entrada.readLine();
+			while (linea != null){
+				this.obtenerVehiculo(linea);
+				linea = entrada.readLine();
 			}
+			
 		}
-		catch (Exception e) {
-			System.out.println(error);
+		catch (IOException e1) {
+			System.out.println("Se ha producido un error al leer el fichero " + FICHERO_ENTRADA.toString());
 		}
-
+		catch (NumberFormatException e2) {
+			lineasError += 1;
+		}
+		return lineasError;
 	}
 
 	/**
