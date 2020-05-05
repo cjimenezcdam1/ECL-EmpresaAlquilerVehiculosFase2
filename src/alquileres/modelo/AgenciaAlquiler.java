@@ -1,6 +1,5 @@
 package alquileres.modelo;
-
-
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -23,6 +22,8 @@ import java.util.TreeSet;
 public class AgenciaAlquiler {
 	private String nombre; // el nombre de la agencia
 	private List<Vehiculo> flota; // la lista de vehículos
+	public static final File FICHERO_ENTRADA = new File("flota.csv");
+	public static final File FICHERO_SALIDA = new File("marcasmodelos.txt");
 
 	/**
 	 * Constructor
@@ -70,7 +71,7 @@ public class AgenciaAlquiler {
 	 * Asumimos todos los datos correctos. Puede haber espacios antes y después
 	 * de cada dato
 	 */
-	private Vehiculo obtenerVehiculo(String lineaInfo) {
+	private Vehiculo obtenerVehiculo(String lineaInfo) throws NumberFormatException{
 		String[] datos = lineaInfo.split(",");
 		for(int i = 0; i < datos.length; i++) {
 			datos[i] = datos[i].trim();
