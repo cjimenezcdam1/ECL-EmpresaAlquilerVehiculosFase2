@@ -1,5 +1,6 @@
 package alquileres.test;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 
@@ -21,7 +22,7 @@ public class TestAgencia {
 	public TestAgencia(String nombre) {
 		agencia = new AgenciaAlquiler(nombre);
 		int errores = agencia.cargarFlota();
-		System.out.println("NÂº lÃ­neas incorrectas: " + errores);
+		System.out.println("Nº líneas incorrectas: " + errores);
 		System.out.println(agencia.toString());
 		hacerPausa();
 
@@ -45,7 +46,7 @@ public class TestAgencia {
 	 */
 	public void testCochesOrdenadosMatricula() {
 		System.out.println(
-		        "Coches de mÃ¡s de 4 plazas ordenados por matrÃ­cula (de < a >)\n");
+		        "Coches de mÃ¡s de 4 plazas ordenados por matrícula (de < a >)\n");
 		for (Coche coche : agencia.cochesOrdenadosMatricula()) {
 			System.out.println(coche.toString());
 			System.out.println("--------------------");
@@ -73,7 +74,7 @@ public class TestAgencia {
 	 * demo marcasConModelos() 
 	 */
 	public void testMarcasConModelos() {
-		System.out.println("Marcas y modelos de vehÃ­culos por marca\n");
+		System.out.println("Marcas y modelos de vehículos por marca\n");
 		Map<String, Set<String>> marcasModelos = agencia.marcasConModelos();
 		for (Map.Entry<String, Set<String>> entrada : marcasModelos
 		        .entrySet()) {
@@ -86,9 +87,12 @@ public class TestAgencia {
 
 	/**
 	 * demo guardarMarcasModelos()
+	 * @throws IOException 
 	 */
-	public void testGuardarMarcasModelos() {
-
+	public void testGuardarMarcasModelos() throws IOException {
+		System.out.println("Guardando en fichero marcas y modelos...");
+		agencia.guardarMarcasModelos();
+		System.out.println("Guardado");
 	}
 
 	/**
@@ -102,12 +106,12 @@ public class TestAgencia {
 	}
 
 	/**
-	 * inicio de la aplicaciÃ³n
+	 * inicio de la aplicación
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		if (args.length != 1) {
 			System.out.println(
-			        "Error en nÂº argumentos\nSintaxis: java TestAgencia <nombre-agencia>");
+			        "Error en nº argumentos\nSintaxis: java TestAgencia <nombre-agencia>");
 		}
 		else {
 
@@ -118,6 +122,8 @@ public class TestAgencia {
 			test.testFurgonetasOrdenadasPorVolumen();
 
 			test.testMarcasConModelos();
+			
+			test.testGuardarMarcasModelos();
 
 		}
 
